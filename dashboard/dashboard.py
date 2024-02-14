@@ -58,6 +58,7 @@ st.markdown("### 4. Pengaruh Setiap Kondisi Cuaca Pada  Penggunaaan Sepeda")
 fig, ax = plt.subplots(figsize=(20,5))
 sns.pointplot(data=df, x='hour', y='count', hue='weather', ax=ax)
 ax.set(title='Jumlah sepeda pada setiap cuaca')
+st.pyplot(fig)
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Dari grafik ini kita dapat lihat jika tren penggunaan sepeda menurun cukup banyak pada musim dingin. Informasi ini dapat digunakan untuk memprediksi penurunan tren peminjaman sepeda pada musim dingin.</p>", unsafe_allow_html = True)
 
 
@@ -66,6 +67,7 @@ st.markdown("### 5. Tren Penggunaaan Sepeda Setiap Bulan")
 fig, ax = plt.subplots(figsize=(20,5))
 sns.barplot(data=df, x='month', y='count', ax=ax)
 ax.set(title='Jumlah sepeda pada setiap bulan')
+st.pyplot(fig)
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Dari grafik ini kita dapat lihat jika tren penggunaan sepeda menurun pada awal dan akhir tahun. Informasi ini dapat digunakan untuk memprediksi penurunan tren peminjaman sepeda pada awal dan akhir tahun.</p>", unsafe_allow_html = True)
 
 
@@ -74,6 +76,7 @@ st.markdown("### 6. Tren Penggunaaan Sepeda Setiap Hari")
 fig, ax = plt.subplots(figsize=(20,5))
 sns.barplot(data=df, x='weekday', y='count', ax=ax)
 ax.set(title='Jumlah sepeda pada setiap hari')
+st.pyplot(fig)
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Dari grafik ini kita dapat lihat tidak ada perbedaan signifikan pada tren penggunaan sepeda pada tiap hari</p>", unsafe_allow_html = True)
 
 st.markdown("### 7. Relasi Antara Temperatur dan Kelembapan Pada Jumlah Peminjaman Sepeda")
@@ -83,16 +86,18 @@ sns.regplot(x=df['temp'], y=df['count'], ax=ax1 ,color='red')
 ax1.set(title="Relasi antara temperatur dan pengguna")
 sns.regplot(x=df['humidity'], y=df['count'], ax=ax2)
 ax2.set(title="Relasi antara kelembapan dan pengguna")
+st.pyplot(fig)
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini menunjukan tidak ada relasi yang sangat kuat pada temperatur dan kelembapan pada jumlah peminjaman sepeda, terbukti titik sangat jauh dari garis linear regresi.</p>", unsafe_allow_html = True)
 
 
 st.markdown("### Distribusi Peminjaman Sepeda")
 # Melihat distribusi user
 fig, (ax1,ax2) = plt.subplots(ncols=2, figsize=(20,5))
-sns.distplot(df['count'], ax=ax1 , color ='red')
+sns.histplot(df['count'], ax=ax1 , color ='red', kde=True)
 ax1.set(title='Distribusi user')
 qqplot(df['count'], ax=ax2, line='s')
 ax2.set(title='Kuantil teoritis')
+st.pyplot(fig)
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini menunjukan distribusi user dan kuantil teoritis. Terlihat jika data cukup linear dengan garis linear, menujukan pegaruh yang cukup kuat antar variable pada jumlah peminjaman sepeda.</p>", unsafe_allow_html = True)
 
 
@@ -118,8 +123,7 @@ y = df_oh['count']
 
 # Memecah data untuk data train dan data test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
-
-loaded_model = joblib.load(str(Path(__file__).resolve().parent.parent)+"/my_random_forest.joblib")
+loaded_model = joblib.load(str(Path(__file__).resolve().parent)+"/my_random_forest.joblib")
 # Membuat prediksi dari model
 y_pred = loaded_model.predict(X_test)
 # Melihat error yang dihasilkan prediksi
