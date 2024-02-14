@@ -98,7 +98,7 @@ st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini menunjuk
 
 st.markdown("### Pelatihan Model")
 
-st.text("Pelatihan model menggunakan algoritma Random Forest Regressor. Kami menggunakan algoritma ini dikarenakan diantara algoritma yang lain, Random Forest Regressor memiliki nilai regresor yang paling kecil.")
+st.markdown("Pelatihan model menggunakan algoritma Random Forest Regressor. Kami menggunakan algoritma ini dikarenakan diantara algoritma yang lain, Random Forest Regressor memiliki nilai regresor yang paling kecil.")
 st.markdown('''~~~
 Model: LinearRegression()
 CV score: 0.6313038164418382
@@ -117,12 +117,12 @@ CV score: 0.40459031301949205
 Model: GradientBoostingRegressor()
 CV score: 0.4714340374748951
 ~~~''')
-st.text("Selanjutnya untuk data train dan data test kami bagi menjadi 75 persen data train dan 25 persen data test.")
+st.markdown("Selanjutnya untuk data train dan data test kami bagi menjadi 75 persen data train dan 25 persen data test.")
 st.markdown('''~~~
 # Memecah data untuk data train dan data test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 ~~~''')
-st.text("Selanjutnya melatih model dengan data, dan melakukan prediksi.")
+st.markdown("Selanjutnya melatih model dengan data, dan melakukan prediksi.")
 st.markdown('''~~~
 # Memilih model pelatihan RandomForestRegressor() dikarena hasil regresi yang didapatkan kecil
 model = RandomForestRegressor()
