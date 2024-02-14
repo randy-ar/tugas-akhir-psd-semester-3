@@ -7,8 +7,8 @@ from pathlib import Path
 import joblib
 from sklearn.ensemble import RandomForestRegressor
 
-st.header(Path(__file__).resolve())
-st.header(Path(__file__).resolve().parent)
+# st.header(Path(__file__).resolve())
+st.header("Prediksi Jumlah Kebutuhan Peminjaman Sepeda Menggunakan Methode Regresi")
 
 df = pd.read_csv(str(Path(__file__).resolve().parent)+"/hour.csv") # Membaca data set hour.csv
 # Menganti nama kolom
@@ -24,3 +24,11 @@ cols = ['season' , 'month' , 'hour' , 'holiday' , 'weekday' , 'workingday' , 'we
 # Mengganti Dtype kolom menjadi Dtype Category
 for col in cols:
     df[col] = df[col].astype('category')
+
+st.subheader("Pengaruh Penggunaaan Sepeda Selama Hari Kerja dan Hari Libur")
+# Melihat pengaruh penggunaaan sepeda selama hari kerja dan hari libur
+fig, ax = plt.subplots(figsize=(20,5))
+sns.pointplot(data=df, x='hour', y='count', hue='weekday', ax=ax)
+ax.set(title='Jumlah sepeda selama weekdays dan weekends')
+
+st.pyplot(fig)
