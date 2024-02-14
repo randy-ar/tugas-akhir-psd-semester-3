@@ -1,13 +1,9 @@
 import pandas as pd
-import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
 from pathlib import Path
-import joblib
-from sklearn.ensemble import RandomForestRegressor
 from statsmodels.graphics.gofplots import qqplot
-from sklearn.model_selection import train_test_split
 
 # st.header(Path(__file__).resolve())
 st.title("Prediksi Jumlah Kebutuhan Peminjaman Sepeda Menggunakan Methode Regresi")
@@ -100,7 +96,7 @@ ax2.set(title='Kuantil teoritis')
 st.pyplot(fig)
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini menunjukan distribusi user dan kuantil teoritis. Terlihat jika data cukup linear dengan garis linear, menujukan pegaruh yang cukup kuat antar variable pada jumlah peminjaman sepeda.</p>", unsafe_allow_html = True)
 
-st.markdown("### Hasil Prediksi Menggunakan Algoritma Random Forest Regressor")
+st.markdown("### Pelatihan Model")
 
 st.text("Pelatihan model menggunakan algoritma Random Forest Regressor. Kami menggunakan algoritma ini dikarenakan diantara algoritma yang lain, Random Forest Regressor memiliki nilai regresor yang paling kecil.")
 st.markdown('''~~~
@@ -147,5 +143,6 @@ ax.set_ylabel('Error')
 plt.show()
 ~~~''')
 
+st.markdown("### Hasil Prediksi Menggunakan Algoritma Random Forest Regressor")
 st.image(str(Path(__file__).resolve().parent)+"/regresion-result.png")
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini adalah hasil regresi dari prediksi model latih menggunakan algoritma Random Forest Regressor. Jika dilihat dari data titik terhadap garis regresi cukup berdekatan yang mengindikasi jika prediksi model cukup akurat.</p>", unsafe_allow_html = True)
