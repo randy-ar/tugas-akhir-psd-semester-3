@@ -98,7 +98,7 @@ st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini menunjuk
 
 st.markdown("### Pelatihan Model")
 
-st.markdown("Pelatihan model menggunakan algoritma Random Forest Regressor. Kami menggunakan algoritma ini dikarenakan diantara algoritma yang lain. Random Forest Regressor memiliki nilai Cross Validation yang paling kecil.")
+st.markdown("Pelatihan model menggunakan algoritma Random Forest Regressor. Kami menggunakan algoritma ini dikarenakan diantara algoritma yang lain Random Forest Regressor memiliki nilai Cross Validation yang paling kecil.")
 st.markdown('''~~~
 Model: LinearRegression()
 CV score: 0.6313038164418382
