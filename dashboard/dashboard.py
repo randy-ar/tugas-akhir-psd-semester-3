@@ -25,10 +25,19 @@ cols = ['season' , 'month' , 'hour' , 'holiday' , 'weekday' , 'workingday' , 'we
 for col in cols:
     df[col] = df[col].astype('category')
 
-st.subheader("Pengaruh Penggunaaan Sepeda Selama Hari Kerja dan Hari Libur")
+
+col1, col2 = st.columns(2)
+
+col1.title("Pengaruh Penggunaaan Sepeda Selama Hari Kerja dan Hari Libur")
 # Melihat pengaruh penggunaaan sepeda selama hari kerja dan hari libur
 fig, ax = plt.subplots(figsize=(20,5))
 sns.pointplot(data=df, x='hour', y='count', hue='weekday', ax=ax)
 ax.set(title='Jumlah sepeda selama weekdays dan weekends')
+col1.pyplot(fig)
 
-st.pyplot(fig)
+col2.title("Pengaruh Penggunaaan Sepeda Selama Hari Kerja dan Hari Libur")
+# Melihat pengaruh penggunaaan sepeda selama hari kerja dan hari libur pada pengguna yang tidak terdaftar
+fig, ax = plt.subplots(figsize=(20,5))
+sns.pointplot(data=df, x='hour', y='casual', hue='weekday', ax=ax)
+ax.set(title='Jumlah sepeda selama weekdays dan weekends pada pengguna yang tidak terdaftar')
+col2.pyplot(fig)
