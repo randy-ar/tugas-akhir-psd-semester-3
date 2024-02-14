@@ -100,40 +100,52 @@ ax2.set(title='Kuantil teoritis')
 st.pyplot(fig)
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini menunjukan distribusi user dan kuantil teoritis. Terlihat jika data cukup linear dengan garis linear, menujukan pegaruh yang cukup kuat antar variable pada jumlah peminjaman sepeda.</p>", unsafe_allow_html = True)
 
+st.markdown("### Hasil Prediksi Menggunakan Algoritma Random Forest Regressor")
 
-# One Hot Encoding
-# one hot encoding untuk kolom season
-pd.get_dummies(df['season'], prefix='season', drop_first=True)
-# one hot encoding untuk kolom lain, season, month, hour, holiday, weekday, workingday, weather
-
-df_oh = df
-
-def one_hot_encoding(data, column):
-    data = pd.concat([data, pd.get_dummies(data[column], prefix=column, drop_first=True)], axis=1)
-    data = data.drop([column], axis=1)
-    return data
-
-cols = ['season','month','hour','holiday','weekday','workingday','weather']
-
-for col in cols:
-    df_oh = one_hot_encoding(df_oh, col)
-# Membuang kolom yang tidak diperlukan
-X = df_oh.drop(columns=['atemp', 'windspeed', 'casual', 'registered', 'count'], axis=1)
-y = df_oh['count']
-
+st.text("Pelatihan model menggunakan algoritma Random Forest Regressor. Kami menggunakan algoritma ini dikarenakan diantara algoritma yang lain, Random Forest Regressor memiliki nilai regresor yang paling kecil.")
+st.markdown('''~~~
+Model: LinearRegression()
+CV score: 0.6313038164418382
+Model: Ridge()
+CV score: 0.6304079414191406
+Model: HuberRegressor()
+CV score: 0.6603301753477131
+Model: ElasticNetCV()
+CV score: 0.6252222784219456
+Model: DecisionTreeRegressor()
+CV score: 0.6046202335241623
+Model: RandomForestRegressor()
+CV score: 0.39121729269057365
+Model: ExtraTreesRegressor()
+CV score: 0.40459031301949205
+Model: GradientBoostingRegressor()
+CV score: 0.4714340374748951
+~~~''')
+st.text("Selanjutnya untuk data train dan data test kami bagi menjadi 75 persen data train dan 25 persen data test.")
+st.markdown('''~~~
 # Memecah data untuk data train dan data test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
-loaded_model = joblib.load(str(Path(__file__).resolve().parent)+"/my_random_forest.joblib")
+~~~''')
+st.text("Selanjutnya melatih model dengan data, dan melakukan prediksi.")
+st.markdown('''~~~
+# Memilih model pelatihan RandomForestRegressor() dikarena hasil regresi yang didapatkan kecil
+model = RandomForestRegressor()
+model.fit(X_train, y_train)
+            
 # Membuat prediksi dari model
-y_pred = loaded_model.predict(X_test)
+y_pred = model.predict(X_test)
+            
 # Melihat error yang dihasilkan prediksi
 error = y_test - y_pred
-
-st.markdown("### Hasil Prediksi Menggunakan Algoritma Random Forest Regressor")
+            
 # Menampilkan Hasil error regresi
 fig, ax = plt.subplots()
 ax.scatter(y_test, error ,color = 'red')
 ax.axhline(lw=3, color='black')
 ax.set_xlabel('Observed')
 ax.set_ylabel('Error')
+plt.show()
+~~~''')
+
+st.image(str(Path(__file__).resolve().parent)+"/regresion-result.png")
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini adalah hasil regresi dari prediksi model latih menggunakan algoritma Random Forest Regressor. Jika dilihat dari data titik terhadap garis regresi cukup berdekatan yang mengindikasi jika prediksi model cukup akurat.</p>", unsafe_allow_html = True)
