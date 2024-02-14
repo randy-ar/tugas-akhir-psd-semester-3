@@ -8,6 +8,7 @@ import joblib
 from sklearn.ensemble import RandomForestRegressor
 
 st.header(Path(__file__).resolve())
+st.header(Path(__file__).resolve().parent)
 
 # df = pd.read_csv(str(Path(__file__).resolve().parent)+"/data_hour.csv") # Membaca data set hour.csv
 # # Menganti nama kolom
