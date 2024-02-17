@@ -101,7 +101,7 @@ st.markdown("### Distribusi Peminjaman Sepeda")
 # qqplot(df['count'], ax=ax2, line='s')
 # ax2.set(title='Kuantil teoritis')
 # st.pyplot(fig)
-st.image(str(Path(__file__).resolve().parent)+"/8.png")
+st.image(str(Path(__file__).resolve().parent)+"/9.png")
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini menunjukan distribusi user dan kuantil teoritis. Terlihat jika data cukup linear dengan garis linear, menujukan pegaruh yang cukup kuat antar variable pada jumlah peminjaman sepeda.</p>", unsafe_allow_html = True)
 
 st.markdown("### Pelatihan Model")
