@@ -1,6 +1,13 @@
+# Kelompok:
+#   - Randy Abdul Rahman           - 10122416
+#   - Tasya Tirta Sari             - 10122906
+#   - Fiqri Sepdian Hermawan Putra - 10122909
+#   - Wildan Cahya Wijaya          - 10122919
+
+
 # import pandas as pd
 # import seaborn as sns
-# import matplotlib.pyplot as plt
+# import matplotlib.lib.pyplot as plt
 import streamlit as st
 from pathlib import Path
 # from statsmodels.graphics.gofplots import qqplot
@@ -154,3 +161,5 @@ plt.show()
 st.markdown("### Hasil Prediksi Menggunakan Algoritma Random Forest Regressor")
 st.image(str(Path(__file__).resolve().parent)+"/regresion-result.png")
 st.markdown(f"<p style='font-size:12px; font-color:#868686;'>Grafik ini adalah hasil regresi dari prediksi model latih menggunakan algoritma Random Forest Regressor. Jika dilihat dari data titik terhadap garis regresi cukup berdekatan yang mengindikasi jika prediksi model cukup akurat.</p>", unsafe_allow_html = True)
+
+# Grafik menggunakan png hasil dari notebook, karena keterbatasan resource dari streamlit tidak memungkinkan render grafik matplotlib.
